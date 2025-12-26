@@ -1,13 +1,27 @@
-
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Description: EC2 instance in default VPC.
 
 Resources:
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH from my IP
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 8000
+          ToPort: 8000
+          CidrIp: 0.0.0.0/0  
   EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
       InstanceType: t3.micro
       ImageId: ami-08d7aabbb50c2c24e
+      SecurityGroupIds:
+        - !Ref InstanceSecurityGroup
       Tags:
         - Key: Name
-          Value: CodeRoadC2Instance
+          Value: CodeRoadEC2Instance
