@@ -1,0 +1,10 @@
+
+AWSTemplateFormatVersion: '2010-09-09'
+Description: EC2 instance in default VPC.
+
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.micro
+      ImageId: ami-08d7aabbb50c2c24e
