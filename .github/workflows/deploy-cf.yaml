@@ -21,4 +21,5 @@ jobs:
           aws cloudformation deploy \
             --template-file cf-template.yaml \
             --stack-name coderoad-ec2-demo \
+            --capabilities CAPABILITY_NAMED_IAM
             --no-fail-on-empty-changeset
